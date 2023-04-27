@@ -19,10 +19,6 @@ public class MandarMail implements Mandar {
 	private String password;
 	private String host;
 
-	public MandarMail() {
-
-	}
-
 	public MandarMail(String emisor, String receptor, String usuario, String contra, String host) {
 
 		this.emisor = Objects.requireNonNull(emisor);

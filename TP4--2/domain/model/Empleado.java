@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Empleado {
@@ -21,11 +22,25 @@ public class Empleado {
 	}
 
 	public LocalDate obtenerFecha() {
-		LocalDate fechaNac = LocalDate.parse(this.fechaNacimiento);
+		LocalDate fechaNac = LocalDate.parse(this.fechaNacimiento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		return fechaNac;
 	}
 
 	public String obtenerNombre() {
 		return this.nombre;
+	}
+
+	public boolean cumploAnios() {
+		LocalDate fechaDeHoy = LocalDate.now();
+
+		if (!fechaDeHoy.getMonth().equals(obtenerFecha().getMonth())) {
+			return false;
+		} // preguntarle al empleado
+
+		if (!Integer.valueOf(fechaDeHoy.getDayOfMonth()).equals(Integer.valueOf(obtenerFecha().getDayOfMonth()))) {
+			return false;
+		}
+
+		return true;
 	}
 }
